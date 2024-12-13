@@ -1,3 +1,5 @@
+// const { prof } = require("../../data/profile.json");
+
 function updateProfileInfo(profileData) {
   const photo = document.getElementById("profile.photo");
   photo.src = profileData.photo;
@@ -77,6 +79,20 @@ function updateProfessionalExperience(profileData) {
     })
     .join("");
 }
+
+fetch("../../data/profile.json")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Erro ao carregar o arquivo JSON");
+    }
+    return response.json();
+  })
+  .then((data) => {
+    console.log(data); // Trabalhe com os dados aqui
+  })
+  .catch((error) => {
+    console.error("Erro:", error);
+  });
 
 (async () => {
   const profileData = await fetchProfileData();
